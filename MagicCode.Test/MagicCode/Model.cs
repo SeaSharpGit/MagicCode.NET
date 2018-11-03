@@ -9,22 +9,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MagicCode
 {
-	public partial class Fc_assessor : BaseModel
-	{
-		[Key]
-		public string Assessor_id { get; set; } = string.Empty;
-		public string Assessor_name { get; set; } = string.Empty;
-		public string User_id { get; set; } = string.Empty;
-		public string Photo { get; set; } = string.Empty;
-		public string Professional { get; set; } = string.Empty;
-		public string Description { get; set; } = string.Empty;
-		public bool Agreement { get; set; } = false;
-		public string Create_user { get; set; } = string.Empty;
-		public string Update_user { get; set; } = string.Empty;
-		public DateTime Create_time { get; set; } = DateTime.Now;
-		public DateTime Update_time { get; set; } = DateTime.Now;
-	}
-
 	public partial class Fc_email_body : BaseModel
 	{
 		public string Body_id { get; set; } = string.Empty;

@@ -10,9 +10,7 @@ namespace MagicCode
     {
         string ConnectionString { get; set; }
 
-        List<string> FilterTables { get; set; }
-
-        List<Table> GetTableModels();
+        List<Table> GetTableModels(List<string> filterTables, List<string> baseFields);
 
 
     }

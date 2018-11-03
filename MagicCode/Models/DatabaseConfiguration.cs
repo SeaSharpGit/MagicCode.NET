@@ -46,6 +46,9 @@ namespace MagicCode
         [XmlAttribute("FilterTables")]
         public string FilterTables { get; set; }
 
+        [XmlAttribute("BaseFields")]
+        public string BaseFields { get; set; }
+
         public List<Table> Tables { get; set; } = new List<Table>();
 
         public void LoadTables()
@@ -56,30 +59,27 @@ namespace MagicCode
             }
 
             var service = GetDatabaseService(ConnectionString);
-            var tables = service.GetTableModels();
+
+            var filterTables = FilterTables.IsNullOrEmpty() ? new List<string>() : FilterTables.Split(new char[] { ',', '，' }).ToList();
+            var baseFields = BaseFields.IsNullOrEmpty() ? new List<string>() : BaseFields.Split(new char[] { ',', '，' }).ToList();
+            var tables = service.GetTableModels(filterTables, baseFields);
             Tables.AddRange(tables);
         }
 
         private IDatabaseService GetDatabaseService(string connectionString)
         {
-            IDatabaseService service = null;
             switch (ProviderName)
             {
                 case "System.Data.SqlClient"://SQL Server
-                    service = new SQLServerService(connectionString);
-                    break;
+                    return new SQLServerService(connectionString);
                 case "MySql.Data.MySqlClient"://MySQL
-                    service = new MySQLService(connectionString);
-                    break;
+                    return new MySQLService(connectionString);
                 case "System.Data.SQLite"://SQLite
                 case "System.Data.OracleClient"://Oracle
                 case "System.Data.OleDb"://Aceess
                 default:
                     throw new Exception($"数据库{Name}配置ProviderName错误");
             }
-
-            service.FilterTables = FilterTables.IsNullOrEmpty() ? new List<string>() : FilterTables.Split(',').ToList();
-            return service;
         }
     }
 

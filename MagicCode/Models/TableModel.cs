@@ -19,6 +19,7 @@ namespace MagicCode
         public string DatabaseName { get; set; } = string.Empty;
         public string NetName { get; set; } = string.Empty;
         public bool IsIdentity { get; set; } = false;
+        public bool IsBaseField { get; set; } = false;
         public TypeMapping TypeMapping { get; set; } = new TypeMapping("int", "int", "0");
     }
 

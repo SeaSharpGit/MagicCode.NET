@@ -12,8 +12,6 @@ namespace MagicCode
     {
         public string ConnectionString { get; set; } = string.Empty;
 
-        public List<string> FilterTables { get; set; } = new List<string>();
-
         #region Constructor
         public MySQLService(string connectionString)
         {
@@ -22,7 +20,7 @@ namespace MagicCode
         #endregion
 
         #region Public Methods
-        public List<Table> GetTableModels()
+        public List<Table> GetTableModels(List<string> filterTables, List<string> baseFields)
         {
             var dic = new Dictionary<string, Table>();
             var dt = GetDataTable(_GetTableModelSql);
@@ -34,7 +32,7 @@ namespace MagicCode
                 var isKey = Convert.ToBoolean(item["IsKey"]);
                 var isIdentity = Convert.ToBoolean(item["IsIdentity"]);
 
-                if (FilterTables.Contains(tableName))
+                if (filterTables.Count > 0 && filterTables.Contains(tableName))
                 {
                     continue;
                 }
@@ -55,6 +53,7 @@ namespace MagicCode
                     IsKey = isKey,
                     IsIdentity = isIdentity,
                     TypeMapping = GetTypeModel(typeName),
+                    IsBaseField = baseFields.Count > 0 && baseFields.Contains(columnName)
                 };
                 dic[tableName].Columns.Add(column);
             }
