@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DatabaseConfiguration>
+  <Connections>
+    <!--<Connection Name="MyDataBase"
+                ProviderName="System.Data.SqlClient"
+                ConnectionString="server=.;database=MyDatabase;uid=sa;pwd=123456"
+                FilterTables="User,Sys_User"/>-->
+    <!--<Connection Name="MyDataBase2"
+                ProviderName="System.Data.SqlClient"
+                ConnectionString="server=.;database=MyDatabase2;uid=sa;pwd=123456"/>-->
+    <Connection Name="FWWB"
+                ProviderName="System.Data.SqlClient"
+                ConnectionString="server=10.1.15.235;database=fwwb;uid=fwuser;pwd=sa123456"/>
+
+  </Connections>
+</DatabaseConfiguration>
