@@ -1,6 +1,7 @@
 ﻿
 //******************************
-//NuGet引用System.ComponentModel.DataAnnotations.dll
+// 自动生成请勿修改
+// NuGet引用System.ComponentModel.DataAnnotations.dll
 //******************************
 using System;
 using System.ComponentModel.DataAnnotations;
